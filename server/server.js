@@ -5,6 +5,7 @@ const ConnectDB = require('./connections/db_connection');
 
 const process_image = require('./apis/process_image');
 const insert_data = require('./apis/insert_data');
+require('dotenv').config()
 
 const app = express();
 const router = express.Router();

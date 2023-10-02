@@ -1,6 +1,12 @@
 const mongoose = require('mongoose');
+require('dotenv').config()
 
-const uri = "mongodb+srv://Vedic:123@cluster0.szbwqgq.mongodb.net/aadhar-db?retryWrites=true&w=majority";
+const USERNAME = process.env.USER;
+const PASSWORD = process.env.PASSWORD;
+const DBNAME  = process.env.DBNAME;
+const CLUSTER = process.env.CLUSTER;
+
+const uri = `mongodb+srv://${USERNAME}:${PASSWORD}@${CLUSTER}.szbwqgq.mongodb.net/${DBNAME}?retryWrites=true&w=majority`;
 
 const ConnectDB = async () => {
     const conn = await mongoose.connect(uri);
