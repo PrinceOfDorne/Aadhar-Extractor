@@ -1,3 +1,0 @@
-1. Standard Template for Aadhar? MALE/Male/male, date formats.
-2. Image Classification model trained on Aadhar/No Aadhar images.
-3. Need a better OCR library.

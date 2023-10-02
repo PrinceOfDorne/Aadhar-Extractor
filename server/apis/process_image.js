@@ -4,6 +4,7 @@ const Jimp = require('jimp');
 const { createWorker } = require('tesseract.js');
 
 const processText = async (text) => {
+    console.log(text)
     const textList = text.split('\n').filter((t) => {
         return t.length > 0;
     })
