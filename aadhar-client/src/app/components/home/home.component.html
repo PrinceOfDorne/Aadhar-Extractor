@@ -1,0 +1,105 @@
+<mat-spinner *ngIf="loading" [diameter]="60"></mat-spinner>
+<div class="parent-div" [ngStyle] = "{'opacity' : loading ? '0.5' : '1'}">
+    <div class="top-div">
+        <span class="top-header left">Government of India</span>
+        <span class="top-header right"> Aadhar Uploading Portal</span>
+    </div>
+    <div class="bottom-div">
+        <img src="/assets/images/woman.PNG" alt="woman-aadhar" class="woman-aadhar" *ngIf="!gotData">
+        <div style="padding-top: 200px; margin-left: 100px; padding: 20px;" *ngIf="!gotData">
+            <input type="file" class="file-input"
+            (change)="onFileSelected($event)" accept="image/png, image/jpeg" #fileUpload>
+
+            <div class="file-upload">
+
+                {{fileName || "No file uploaded yet."}}
+
+                <button mat-raised-button color="primary" class="upload-btn"
+                (click)="fileUpload.click()" [disabled] = "loading">
+                Upload Aadhar
+                </button>
+            </div>
+            <div class="error-class" *ngIf="isError">
+                <div style="font-size: 25px; margin-bottom: 30px;">ERROR</div>
+                <div>Unable to Extract Data!! Please upload again</div>
+            </div>
+        </div>
+        <div *ngIf="gotData && !uploadSuccess && !entryPresent" style="display: flex;">
+            <div style="padding: 20px; background-color: lightskyblue; border: 5px solid #61A5C2; width: fit-content; height: fit-content;">
+                <img [src] = "imgUrl" width="500px">
+            </div>
+            <div style="padding-top: 100px; padding-left: 100px;">
+                <table *ngIf="!editData">
+                    <tr>
+                    <th>Name</th>
+                    <th>Gender</th>
+                    <th>DOB</th>
+                    </tr>
+                    <tr>
+                    <td>{{ name }}</td>
+                    <td>{{ gender }}</td>
+                    <td>{{ dob }}</td>
+                    </tr>
+                </table>
+                <table *ngIf="editData">
+                    <tr>
+                    <th>Name</th>
+                    <th>Gender</th>
+                    <th>DOB</th>
+                    </tr>
+                    <tr>
+                    <td>
+                        <mat-form-field>
+                            <input type="text" matInput [(ngModel)]="name">
+                        </mat-form-field>
+                    </td>
+                    <td>
+                        <mat-form-field>
+                            <mat-select [(ngModel)]="gender">
+                              <mat-option *ngFor="let gender of genders" [value]="gender">{{ gender }}</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </td>
+                    <td>
+                        <mat-form-field>
+                            <input [matDatepicker]="picker" matInput [(ngModel)]='dob_Date'>
+                            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                            <mat-datepicker #picker></mat-datepicker>
+                        </mat-form-field>
+                    </td>
+                    </tr>
+                </table>
+                <div style="padding: 20px; display: flex;">
+                    <button style="margin: 20px;" mat-raised-button color="primary" class="upload-btn"
+                        (click)="UploadData()" [disabled] = "loading">
+                        Upload Data
+                    </button>
+                    <button *ngIf = "!editData" style="margin: 20px;" mat-raised-button color="primary" class="upload-btn"
+                        (click)="EditData()" [disabled] = "loading">
+                        Edit
+                    </button>
+                    <button style="margin: 20px;" mat-raised-button color="primary" class="upload-btn"
+                        (click)="Cancel()" [disabled] = "loading">
+                        Cancel
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div *ngIf="gotData && (uploadSuccess || entryPresent)">
+            <div style="position: absolute; left: 30%;">
+                <div *ngIf = "uploadSuccess" style="background-color: lightgreen; color: green; padding: 30px 50px 50px 30px; font-size: 20px; border: 5px solid green; border-radius: 5px; width: 100%; text-align: center;">
+                    Data Uploaded Successfully!
+                </div>
+                <div *ngIf = "entryPresent" style="background-color: lightpink; color: lightcoral; padding: 30px 50px 50px 30px; font-size: 20px; border: 5px solid lightcoral; border-radius: 5px; width: 100%; text-align: center;">
+                    Entry Already Present!
+                </div>
+                <div class="button-div">
+                    <button mat-raised-button color="primary" class="upload-btn"
+                            (click)="Cancel()" [disabled] = "loading">
+                        Okay
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

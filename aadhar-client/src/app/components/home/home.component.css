@@ -1,0 +1,91 @@
+.parent-div{
+    height: 100%;
+    width: 100%;
+}
+
+.top-div{
+    background-color: aqua;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.bottom-div{
+    height: 90%;
+    background-image: url('/assets/images/aadhaar-1.png');
+    background-color: rgba(255,255,255,0.6);
+    background-blend-mode: lighten;
+    background-size: 50px;
+    padding: 80px;
+    display: flex;
+    justify-content:flex-start;
+}
+
+.top-header{
+    color: white;
+    font-size: 30px;
+    font-weight: 600;  
+}
+
+.woman-aadhar{
+    width: auto;
+    height: 80%;
+    border-radius: 10px;
+}
+
+.file-input {
+    display: none;
+  }
+
+.file-upload{
+    margin-top: 50%;
+}
+
+mat-spinner{
+    top: 50%;
+    left: 50%;
+    z-index: 1;
+    position: absolute;
+}
+
+.error-class{
+    padding: 20px;
+    border-radius: 10px;
+    margin-top: 20px;
+    background-color: #FA8072;
+    border: red 1px solid;
+    border-radius: 2px;
+    color: red;
+    font-size: 20px;
+    text-align: center;
+}
+
+th{
+    background-color: lightgray;
+    border: 2px solid black;
+    padding: 5px;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+td{
+    background-color: white;
+    border: 2px solid black;
+    padding: 5px;
+    font-size: 20px;
+}
+
+.button-div{
+    left: 50%;
+    position: absolute;
+    margin: 10px;
+}
+
+:host ::ng-deep .mat-mdc-form-field-infix{
+    width: 100px;
+    padding: 0px;
+}
+
+:host ::ng-deep .mat-mdc-form-field-subscript-wrapper{
+    display: none;
+}
